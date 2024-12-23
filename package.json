@@ -4,8 +4,8 @@
   "description": "Validate Google reCAPTCHA",
   "main": "validate_recaptcha.js",
   "scripts": {
-    "start:dev": "env-cmd .env.dev node validate_recaptcha.js",
-    "start:prod": "env-cmd .env.prod node validate_recaptcha.js",
+    "start:dev": "env-cmd -f .env.dev node validate_recaptcha.js",
+    "start:prod": "env-cmd -f .env.prod node validate_recaptcha.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
