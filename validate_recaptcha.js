@@ -14,20 +14,21 @@ app.use(express.json());
 // Endpoint verify-captcha
 app.post('/verify-captcha', async (req, res) => {
   try {
-    const { token } = req.body;
+    // captchaResponse is a token obtained after doing the captcha
+    const { captchaResponse } = req.body;
 
-    if (!token) {
-      return res.status(400).json({ success: false, error: 'Captcha token missing.' });
+    if (!captchaResponse) {
+      return res.status(400).json({ success: false, error: 'Captcha response token missing.' });
     }
 
-    // Verify the CAPTCHA token using Google API
+    // Verify the CAPTCHA response token using Google API
     const { data } = await axios.post(
       `https://www.google.com/recaptcha/api/siteverify`,
       null,
       {
         params: {
           secret: REACT_APP_SITE_SECRET,
-          response: token,
+          response: captchaResponse,
         },
       }
     );
