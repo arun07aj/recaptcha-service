@@ -52,7 +52,7 @@ jobs:
           docker ps -a -q --filter "name=recaptcha-service" | grep -q . && docker rm -f recaptcha-service || echo "No recaptcha-service container to stop/remove"
           
             # Run the frontend container (5000 of VM to 5000 of image) 
-            docker run -d --name recaptcha-service -p 5000:5000 \
+            docker run -d --restart unless-stopped --name recaptcha-service -p 127.0.0.1:5000:5000 \
               ${{ secrets.DOCKER_USERNAME }}/recaptcha-service:latest
           
             echo "Reloading Nginx..."
